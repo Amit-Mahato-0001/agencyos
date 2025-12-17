@@ -21,4 +21,14 @@ const signup = async (req, res) => {
     }
 };
 
-module.exports = { signup };
+const login = async (req, res) => {
+    try{
+        const { email, password } = req.body;
+        const result = await authService.login({ email, password });
+        res.json(result);
+    } catch {
+        res.status(401).json({ message: "Invalid credentials" });
+    }
+}
+
+module.exports = { signup, login };

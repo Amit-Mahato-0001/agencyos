@@ -1,5 +1,6 @@
-## Backend Setup (2)
+## Backend Setup (3)
 
 ### Added
-- Updated auth controller
-- Updated auth service
+- Implemented login controller
+- Implemented login service logic
+- Added login authentication route

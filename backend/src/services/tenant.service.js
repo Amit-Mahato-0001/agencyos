@@ -1,4 +1,4 @@
-const Tenant = require("./tenant.model");
+const Tenant = require("../models/tenant.model");
 
 const createTenant = async (data) => {
     return Tenant.create(data);

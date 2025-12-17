@@ -1,5 +1,5 @@
 ## Backend Setup (2)
 
 ### Added
-- User service created
-- User model created
+- Updated auth controller
+- Updated auth service

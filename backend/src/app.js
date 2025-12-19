@@ -5,6 +5,7 @@ const cors = require('cors');
 const authRoutes = require("./routes/auth.routes");
 const authenticate = require("./middlewares/auth.middleware");
 const resolveTenant = require("./middlewares/tenant.middleware");
+const requireRole = require("./middlewares/rbac.middleware");
 
 const app = express();
 connectDB();
@@ -26,6 +27,18 @@ app.get("/api/me", (req,res) => {
             plan: req.tenant.plan
         }
     })
+})
+
+app.get("/api/owner-only", requireRole(["owner"]), (req, res) => {
+    res.json({ message: "Welcome owner" })
+})
+
+app.get("/api/admin-only", requireRole(["owner","admin"]), (req, res) => {
+    res.json({ message: "Welcome Admin or Owner" })
+})
+
+app.get("/api/member-only", requireRole(["owner","admin","member"]), (req,res) => {
+    res.json({ message: "Welcome team member"})
 })
 
 module.exports = app;

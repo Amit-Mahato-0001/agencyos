@@ -1,6 +1,7 @@
-## Backend Setup (3)
+## Backend Setup (4)
 
 ### Added
-- Implemented login controller
-- Implemented login service logic
-- Added login authentication route
+- Implemented Project model (tenant-based)
+- Implemented Project service logic (create, list, soft delete)
+- Implemented Project controller
+- Added Project routes with role-based access control

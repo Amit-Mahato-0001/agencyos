@@ -21,11 +21,21 @@ const deleteProject = async (projectId, tenantId) => {
         { deletedAt: new Date() },
         { new: true }
     )
-}
+};
+
+const assignClientToProject = async (projectId, clientId, tenantId) => {
+
+    return Project.findOneAndUpdate(
+        { _id: projectId, tenantId },
+        { clientId },
+        { new: true }
+    )
+};
 
 module.exports = {
     createProject,
     getProjectsByTenant,
-    deleteProject
+    deleteProject,
+    assignClientToProject
 }
 

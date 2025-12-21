@@ -22,8 +22,20 @@ const createProject = async (req, res) => {
 const getProjects = async (req, res) => {
 
     try{
-        const projects = await projectService.getProjectsByTenant(req.tenantId)
+        let projects;
+
+        if(req.user.role === "client"){
+            projects = await Project.find({
+                tenantId: req.tenantId,
+                clientId: req.user.userId,
+                deletedAt: null
+            })
+        } else{
+            projects = await projectService.getProjectsByTenant(req.tenantId)
+        }
+
         res.json(projects)
+
     } catch(err){
         res.status(500).json({ message: "Failed to fetch projects" })
     }
@@ -42,8 +54,28 @@ const deleteProject = async (req, res) => {
     }
 };
 
+const assignClient = async (req, res) => {
+
+    try{
+        const { projectId } = req.params;
+        const { clientId } = req.body;
+
+        const project = await projectService.assignClientToProject(
+            projectId,
+            clientId,
+            req.tenantId
+        )
+
+        res.json(project);
+
+    } catch{
+        res.status(500).json({ message: "Client assignment failed" })
+    }
+}
+
 module.exports = {
     createProject,
     getProjects,
-    deleteProject
+    deleteProject,
+    assignClient
 }

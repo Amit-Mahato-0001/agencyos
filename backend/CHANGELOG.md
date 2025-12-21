@@ -1,7 +1,5 @@
-## Backend Setup (4)
+## Backend Setup (5)
 
 ### Added
-- Implemented Project model (tenant-based)
-- Implemented Project service logic (create, list, soft delete)
-- Implemented Project controller
-- Added Project routes with role-based access control
+- Implemented Client creation flow (tenant-scoped users with client role)
+- Implemented Client-to-Project assignment (secure project updates)

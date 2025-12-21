@@ -22,5 +22,11 @@ router.delete(
     projectController.deleteProject
 )
 
+router.patch(
+    "/:projectId/assign-client",
+    requireRole(["owner", "admin"]),
+    projectController.assignClient
+)
+
 module.exports = router;
 

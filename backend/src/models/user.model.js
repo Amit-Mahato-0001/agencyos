@@ -30,4 +30,14 @@ const userSchema = new mongoose.Schema({
 { timestamps: true}
 );
 
+/**
+ * same email allowed in different tenants,
+ * but not twice in same tenant
+*/
+
+userSchema.index(
+    { email: 1, tenantId: 1 },
+    { unique: true }
+);
+
 module.exports = mongoose.model("User", userSchema);

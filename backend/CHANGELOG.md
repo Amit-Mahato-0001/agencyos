@@ -1,5 +1,11 @@
-## Backend Setup (5)
+## Backend Setup (6)
 
 ### Added
-- Implemented Client creation flow (tenant-scoped users with client role)
-- Implemented Client-to-Project assignment (secure project updates)
+
+- Implemented tenant-scoped audit logging system for critical actions
+
+- Added automatic logging for sensitive operations (project creation, deletion, client assignment)
+
+- Ensured audit logs are isolated per tenant (no cross-organization visibility)
+
+- Restricted audit log access to Owner/Admin roles only

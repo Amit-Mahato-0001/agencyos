@@ -3,6 +3,7 @@ const router = express.Router();
 
 const requireRole = require("../middlewares/rbac.middleware");
 const projectController = require("../controllers/project.controller");
+const auditLogger = require("../middlewares/audit.middleware");
 
 router.post(
     "/",
@@ -19,6 +20,7 @@ router.get(
 router.delete(
     "/:projectId",
     requireRole(["owner", "admin"]),
+    auditLogger("PROJECT_DELETED"),
     projectController.deleteProject
 )
 
@@ -26,6 +28,13 @@ router.patch(
     "/:projectId/assign-client",
     requireRole(["owner", "admin"]),
     projectController.assignClient
+)
+
+router.post(
+    "/",
+    requireRole(["owner", "admin", "member"]),
+    auditLogger("PROJECT_CREATED"),
+    projectController.createProject
 )
 
 module.exports = router;

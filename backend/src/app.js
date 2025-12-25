@@ -9,6 +9,7 @@ const requireRole = require("./middlewares/rbac.middleware");
 const projectRoutes = require("./routes/project.routes");
 const userRoutes = require("./routes/user.routes");
 const auditRoutes = require("./routes/audit.routes");
+const dashboardroutes = require("./routes/dashboard.routes");
 
 const app = express();
 connectDB();
@@ -49,5 +50,7 @@ app.use("/api/projects", projectRoutes)
 app.use("/api/users", userRoutes)
 
 app.use("/api/audit-logs", auditRoutes)
+
+app.use("/api/dashboard", dashboardroutes)
 
 module.exports = app;

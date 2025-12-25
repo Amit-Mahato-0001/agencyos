@@ -1,11 +1,9 @@
-## Backend Setup (6)
+## Backend Setup (7)
 
 ### Added
 
-- Implemented tenant-scoped audit logging system for critical actions
+- Implemented tenant-level dashboard statistics API
 
-- Added automatic logging for sensitive operations (project creation, deletion, client assignment)
+- Added usage metrics for projects, users, clients, and activity overview
 
-- Ensured audit logs are isolated per tenant (no cross-organization visibility)
-
-- Restricted audit log access to Owner/Admin roles only
+- Included recent audit activity feed for quick administrative insights

@@ -10,6 +10,7 @@ const projectRoutes = require("./routes/project.routes");
 const userRoutes = require("./routes/user.routes");
 const auditRoutes = require("./routes/audit.routes");
 const dashboardroutes = require("./routes/dashboard.routes");
+const { authLimiter, apiLimiter } = require("./middlewares/rateLimit.middleware");
 
 const app = express();
 connectDB();
@@ -17,10 +18,11 @@ connectDB();
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/auth", authRoutes);
+app.use("/api/auth", authLimiter, authRoutes);
 
 app.use(authenticate);
 app.use(resolveTenant);
+app.use(apiLimiter);
 
 app.get("/api/me", (req,res) => {
     res.json({
